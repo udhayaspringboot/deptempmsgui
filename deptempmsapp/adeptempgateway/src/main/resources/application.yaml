@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      routes:
+        - id: department-service
+          uri: lb://department-service
+          predicates:
+            - Path=/department/**
+          filters:
+            - name: Hystrix
+              args:
+               name: fallbackCommand
+               fallbackuri: forward:/deartmentfallback  
+                            
+           
+server:  port: 8800            
+            
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+     
+         
+       
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 10000
+
+ 
+           

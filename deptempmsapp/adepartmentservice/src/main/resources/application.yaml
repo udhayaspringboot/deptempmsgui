@@ -1,0 +1,13 @@
+spring:
+  cloud:
+    config:
+      uri:
+      - http://localhost:8888/application/{profile}         
+        
+         
+  application:
+    name: department-service  profiles:    active:    - test 
+server:
+  port: 8801         
+  
+  
